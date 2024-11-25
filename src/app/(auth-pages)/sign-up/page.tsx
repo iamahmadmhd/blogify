@@ -1,41 +1,38 @@
-import { signUpAction } from '@/app/actions';
 import Link from 'next/link';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Button } from '@/src/components/ui/button';
+import { UserAuthForm } from '@/components/sign-up-form';
 
 export default async function Signup(props: any) {
     return (
         <>
-            <form className='mx-auto max-w-md py-10 lg:py-16'>
-                <h1 className='text-2xl font-medium'>Sign up</h1>
-                <p className='text text-sm text-foreground'>
+            <div className='flex flex-col space-y-2 text-center'>
+                <h1 className='text-2xl font-semibold tracking-tight'>
+                    Create an account
+                </h1>
+                <p className='text-sm text-muted-foreground'>
                     Already have an account?{' '}
-                    <Link
-                        className='font-medium text-primary underline'
-                        href='/sign-in'
-                    >
+                    <Link href='/sign-in' className='underline'>
                         Sign in
                     </Link>
                 </p>
-                <div className='mt-8 flex flex-col gap-2 [&>input]:mb-3'>
-                    <Label htmlFor='email'>Email</Label>
-                    <Input
-                        name='email'
-                        placeholder='you@example.com'
-                        required
-                    />
-                    <Label htmlFor='password'>Password</Label>
-                    <Input
-                        type='password'
-                        name='password'
-                        placeholder='Your password'
-                        minLength={6}
-                        required
-                    />
-                    <Button formAction={signUpAction}>Sign up</Button>
-                </div>
-            </form>
+            </div>
+            <UserAuthForm />
+            <p className='px-8 text-center text-sm text-muted-foreground'>
+                By clicking continue, you agree to our{' '}
+                <Link
+                    href='/terms'
+                    className='underline underline-offset-4 hover:text-primary'
+                >
+                    Terms of Service
+                </Link>{' '}
+                and{' '}
+                <Link
+                    href='/privacy'
+                    className='underline underline-offset-4 hover:text-primary'
+                >
+                    Privacy Policy
+                </Link>
+                .
+            </p>
         </>
     );
 }

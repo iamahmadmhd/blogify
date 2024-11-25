@@ -1,22 +1,17 @@
-import { createClient } from '@/utils/supabase/server';
-import { redirect } from 'next/navigation';
+import { useEffect } from "react";
 
-export default async function adminPage() {
-    const supabase = await createClient();
-
-    const {
-        data: { user },
-    } = await supabase.auth.getUser();
-
-    const { data: posts } = await supabase.from('Posts').select();
-
-    if (!user) {
-        return redirect('/sign-in');
-    }
+export default function Page() {
 
     return (
         <>
-            <div className='mx-auto max-w-4xl py-20'>Dashboard</div>
+            <div className='flex flex-1 flex-col gap-4 p-4 pt-0'>
+                <div className='grid auto-rows-min gap-4 md:grid-cols-3'>
+                    <div className='aspect-video rounded-xl bg-muted/50' />
+                    <div className='aspect-video rounded-xl bg-muted/50' />
+                    <div className='aspect-video rounded-xl bg-muted/50' />
+                </div>
+                <div className='min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min' />
+            </div>
         </>
     );
 }

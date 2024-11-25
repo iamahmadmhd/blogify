@@ -1,3 +1,4 @@
+import { ThemeProvider } from '@/components/theme-provider';
 import './globals.css';
 
 const defaultUrl = process.env.VERCEL_URL
@@ -18,8 +19,14 @@ export default function RootLayout({
     return (
         <html lang='en' suppressHydrationWarning>
             <body className='bg-background text-foreground'>
-                <main>{children}</main>
-                <footer className='mx-auto flex w-full items-center justify-center gap-8 border-t py-16 text-center text-xs'></footer>
+                <ThemeProvider
+                    attribute='class'
+                    defaultTheme='system'
+                    enableSystem
+                    disableTransitionOnChange
+                >
+                    {children}
+                </ThemeProvider>
             </body>
         </html>
     );
